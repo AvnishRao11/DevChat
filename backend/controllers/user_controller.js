@@ -12,6 +12,7 @@ export const createUserController=async(req,res)=>{
     try{
         const user=await userServices.CreateUser(req.body);
         const token=await user.generateJWT();
+        delete user._doc.password;
         res.status(201).json({user,token});
     }
     catch(err){
@@ -34,6 +35,7 @@ export const logincontroller=async(req,res)=>{
             return res.status(401).json({errors:"Invalid email or password"});
         }
         const token=await user.generateJWT();
+        delete user._doc.password;
         res.status(200).json({user,token});
     }
     catch(err){
