@@ -27,6 +27,6 @@ userSchema.methods.generateJWT=async function(){
     return jwt.sign({email:this.email},process.env.JWT_SECRET,{expiresIn:'24h'});
 }
 
-const User=mongoose.model("user",userSchema);
+const User=mongoose.model("User",userSchema);
 
 export default User;
